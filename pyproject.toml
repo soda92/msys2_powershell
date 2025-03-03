@@ -1,0 +1,7 @@
+[project]
+name = "msys2-wrapper"
+version = "2025.3.3.0"
+description = "start msys2 without bat"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []

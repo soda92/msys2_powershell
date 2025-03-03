@@ -1,3 +1,7 @@
+@rem for reference
+@rem orig content from: https://github.com/msys2/MSYS2-packages/blob/dfbbaf0eb26423f529a4ab3cb426f4fbc8a1114c/filesystem/msys2_shell.cmd
+
+
 @echo off
 setlocal EnableDelayedExpansion
 
