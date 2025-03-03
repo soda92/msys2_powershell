@@ -1,2 +1,3 @@
-# msys2_powershell
-msys2_shell.cmd converted to powershell
+# msys2_wrapper
+
+a Python wrapper for starting msys2 without bat
