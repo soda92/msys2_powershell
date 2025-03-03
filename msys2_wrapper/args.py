@@ -7,8 +7,9 @@ def parse_args() -> (str, str):
     # default
     shell = "bash"
     msystem = "ucrt64"
+    shell_args = ["-l"]
 
-    args = sys.argv
+    args = sys.argv[1:]
 
     def shift_args(times=1):
         nonlocal args
@@ -41,6 +42,7 @@ def parse_args() -> (str, str):
             shift_args(2)  # two times
             continue
 
-        shift_args()
+        break
 
-    return msystem.upper(), shell
+    shell_args = [*shell_args, *args]
+    return msystem.upper(), shell, shell_args

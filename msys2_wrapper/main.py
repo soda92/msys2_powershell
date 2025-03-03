@@ -13,8 +13,12 @@ def main():
         exit(-1)
     env = {"CHERE_INVOKING": "1", "MSYSTEM": msystem}
 
-    args2 = [shell_exe, *args]
-    subprocess.call(args2, env=env)
+    args2 = [str(shell_exe).replace("\\", "/"), *args]
+    # print(" ".join(args2))
+    try:
+        subprocess.call(args2, env=env)
+    except KeyboardInterrupt:
+        exit()
 
 
 if __name__ == "__main__":
