@@ -1,7 +1,6 @@
 from pathlib import Path
 import os
 import logging
-import subprocess
 
 
 def check_ext(s: Path) -> bool:
@@ -31,6 +30,4 @@ def find_msys2() -> Path:
     real_loc = p1.parent
     if "scoop/shims" in str(p1).replace("\\", "/"):
         real_loc = Path.home() / "scoop/apps/msys2/current/msys2_shell.cmd"
-    bash = real_loc.parent / "usr/bin/bash.exe"
-    env = {"CHERE_INVOKING": "1", "MSYSTEM": "UCRT64"}
-    subprocess.call(bash, env=env)
+    return real_loc.parent
