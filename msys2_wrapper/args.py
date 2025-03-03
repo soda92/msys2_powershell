@@ -1,13 +1,19 @@
 import sys
 from msys2_wrapper.help import print_help
 from msys2_wrapper.helper import remove_quote
+import os
 
 
-def parse_args() -> (str, str):
-    # default
-    shell = "bash"
-    msystem = "ucrt64"
-    shell_args = ["-l"]
+class LaunchArgs:
+    def __init__(self):
+        self.shell = "bash"
+        self.msystem = "ucrt64"
+        self.shell_args = ["-l"]
+        self.working_directory = os.getcwd()
+
+
+def parse_args() -> LaunchArgs:
+    largs = LaunchArgs()
 
     args = sys.argv[1:]
 
@@ -38,11 +44,23 @@ def parse_args() -> (str, str):
             if len(args) == 1:
                 print("Shell not specified for -shell parameter.", file=sys.stderr)
                 exit(2)
-            shell = remove_quote(args[1])
+            largs.shell = remove_quote(args[1])
             shift_args(2)  # two times
+            continue
+
+        if arg == "-where":
+            if len(args) == 1:
+                print(
+                    "Working directory is not specified for -where parameter.",
+                    file=sys.stderr,
+                )
+                exit(2)
+            largs.working_directory = remove_quote(args[1])
+            shift_args(2)
             continue
 
         break
 
-    shell_args = [*shell_args, *args]
-    return msystem.upper(), shell, shell_args
+    largs.msystem = msystem.upper()
+    largs.shell_args.extend(args)
+    return largs
