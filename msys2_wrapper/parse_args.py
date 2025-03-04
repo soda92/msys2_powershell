@@ -53,7 +53,7 @@ def parse_args() -> LaunchArgs:
             continue
 
         if arg in ("-full-path", "-use-full-path"):
-            largs.msys2_path_type = "inherit"
+            largs.path_type = "inherit"
             shift_args()
             continue
 

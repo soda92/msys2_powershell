@@ -8,10 +8,31 @@ class LaunchArgs:
     def __init__(self):
         self.base = find_msys2()
         self.shell = "bash"
-        self.msystem = "ucrt64"
+        self.msystem = "msys"
         self.shell_args = ["-l"]
         self.working_directory = os.getcwd()
-        self.msys2_path_type = ""
+        self.path_type = ""
+
+    def get_title_and_icon(largs) -> (str, str):
+        title = "MSYS2 MSYS"
+        icon = "msys2.ico"
+        if largs.msystem == "MINGW32":
+            title = "MinGW x32"
+            icon = "mingw32.ico"
+        elif largs.msystem == "MINGW64":
+            title = "MinGW x64"
+            icon = "mingw64.ico"
+        elif largs.msystem == "UCRT64":
+            title = "MinGW UCRT x64"
+            icon = "ucrt64.ico"
+        elif largs.msystem == "CLANG64":
+            title = "MinGW Clang x64"
+            icon = "clang64.ico"
+        elif largs.msystem == "CLANGARM64":
+            title = "MinGW Clang ARM64"
+            icon = "clangarm64.ico"
+
+        return title, icon
 
     def get_shell_exe(self):
         shell_exe = self.base / f"usr/bin/{self.shell}.exe"
@@ -22,8 +43,8 @@ class LaunchArgs:
 
     def get_shell_env(largs) -> dict[str, str]:
         env = {"CHERE_INVOKING": "1", "MSYSTEM": largs.msystem}
-        if largs.msys2_path_type != "":
-            env["MSYS2_PATH_TYPE"] = largs.msys2_path_type
+        if largs.path_type != "":
+            env["MSYS2_PATH_TYPE"] = largs.path_type
 
         # insert default env
         for k in os.environ.keys():
