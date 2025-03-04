@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import logging
+import functools
 
 
 def check_ext(s: Path) -> bool:
@@ -9,6 +10,7 @@ def check_ext(s: Path) -> bool:
     return False
 
 
+@functools.cache
 def find_msys2() -> Path:
     p = os.environ["PATH"]
     results = []

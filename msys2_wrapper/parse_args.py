@@ -1,20 +1,12 @@
 import sys
 from msys2_wrapper.help import print_help
 from msys2_wrapper.helper import remove_quote
-import os
-
-
-class LaunchArgs:
-    def __init__(self):
-        self.shell = "bash"
-        self.msystem = "ucrt64"
-        self.shell_args = ["-l"]
-        self.working_directory = os.getcwd()
-        self.msys2_path_type = ""
+from msys2_wrapper.launch_args import LaunchArgs
 
 
 def parse_args() -> LaunchArgs:
     largs = LaunchArgs()
+    msystem = largs.msystem
 
     args = sys.argv[1:]
 
