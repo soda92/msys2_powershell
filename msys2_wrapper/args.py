@@ -10,6 +10,7 @@ class LaunchArgs:
         self.msystem = "ucrt64"
         self.shell_args = ["-l"]
         self.working_directory = os.getcwd()
+        self.msys2_path_type = ""
 
 
 def parse_args() -> LaunchArgs:
@@ -57,6 +58,11 @@ def parse_args() -> LaunchArgs:
                 exit(2)
             largs.working_directory = remove_quote(args[1])
             shift_args(2)
+            continue
+
+        if arg in ("-full-path", "-use-full-path"):
+            largs.msys2_path_type = "inherit"
+            shift_args()
             continue
 
         break

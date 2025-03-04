@@ -9,9 +9,9 @@ def print_help():
     %~1 [options] [login shell parameters]
 
 Options:
-    -mingw32 ^| -mingw64 ^| -ucrt64 ^| -clang64 ^|
-    -msys[2] ^| -clangarm64           Set shell type
-    -defterm ^| -mintty ^| -conemu     Set terminal type
+    -mingw32 | -mingw64 | -ucrt64 | -clang64 |
+    -msys[2] | -clangarm64           Set shell type
+    -defterm | -mintty | -conemu     Set terminal type
     -here                            Use current directory as working
                                      directory
     -where DIRECTORY                 Use specified DIRECTORY as working
@@ -23,7 +23,7 @@ Options:
                                      errorcode as this batch file 
                                      resulting errorcode
     -shell SHELL                     Set login shell
-    -help ^| --help ^| -? ^| /?         Display this help and exit
+    -help | --help | -? | /?         Display this help and exit
 
 Any parameter that cannot be treated as valid option and all
 following parameters are passed as login shell command parameters."""
