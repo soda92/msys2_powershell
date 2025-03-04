@@ -2,16 +2,23 @@ import os
 import sys
 
 from msys2_wrapper.find_msys2 import find_msys2
+from pathlib import Path
 
 
 class LaunchArgs:
     def __init__(self):
         self.base = find_msys2()
+
+        self.WD = self.base
+        if not Path(self.WD).joinpath("msys-2.0.dll").exists():
+            self.WD = self.WD / "usr/bin"
+
         self.shell = "bash"
         self.msystem = "msys"
         self.shell_args = ["-l"]
         self.working_directory = os.getcwd()
         self.path_type = ""
+        self.console = "mintty.exe"
 
     def get_title_and_icon(largs) -> (str, str):
         title = "MSYS2 MSYS"
