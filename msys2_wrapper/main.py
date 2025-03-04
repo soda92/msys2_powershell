@@ -5,12 +5,8 @@ from msys2_wrapper.shell_env import get_shell_env
 
 def main():
     largs = parse_args()
-    shell_exe = largs.get_shell_exe()
-    args2 = [shell_exe, *largs.shell_args]
-    # print(" ".join(args2))
-
     env = get_shell_env(largs)
-    start_shell(args2, largs, env)
+    start_shell(largs, env)
 
 
 if __name__ == "__main__":

@@ -12,7 +12,10 @@ def CD(d):
     os.chdir(cwd)
 
 
-def start_shell(shell_args, largs: LaunchArgs, env: dict[str, str]):
+def start_shell(largs: LaunchArgs, env: dict[str, str]):
+    shell_exe = largs.get_shell_exe()
+    shell_args = [shell_exe, *largs.shell_args]
+    # print(" ".join(shell_args))
     try:
         with CD(largs.working_directory):
             subprocess.call(shell_args, env=env)
