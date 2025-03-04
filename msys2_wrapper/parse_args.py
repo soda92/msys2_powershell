@@ -57,6 +57,11 @@ def parse_args() -> LaunchArgs:
             shift_args()
             continue
 
+        if arg == "-defterm":
+            largs.console = "defterm"
+            shift_args()
+            continue
+
         break
 
     largs.msystem = msystem.upper()
