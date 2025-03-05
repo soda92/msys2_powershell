@@ -2,6 +2,7 @@ import sys
 from msys2_wrapper.help import print_help
 from msys2_wrapper.helper import remove_quote
 from msys2_wrapper.launch_args import LaunchArgs
+from pathlib import Path
 
 
 def parse_args() -> LaunchArgs:
@@ -9,6 +10,11 @@ def parse_args() -> LaunchArgs:
     msystem = largs.msystem
 
     args = sys.argv[1:]
+
+    arg0 = sys.argv[0]
+    base = Path(arg0).name
+    if base == "msys2c":
+        largs.console = "defterm"
 
     def shift_args(times=1):
         nonlocal args
