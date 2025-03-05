@@ -2,6 +2,7 @@ from pathlib import Path
 import os
 import logging
 import functools
+from msys2_wrapper.helper import remove_quote
 
 
 def check_ext(s: Path) -> bool:
@@ -20,17 +21,17 @@ def detect_config() -> (str, str, int):
     config = configparser.ConfigParser()
     config.read(config_file)
 
-    if "default.msys2_base" not in config:
+    if "default" not in config or "base" not in config["default"]:
         print(f"""incorrect config file {config_file}.
 please replace it with the following structure,
 with the "D:/msys64" replaced by your msys2 installation path:
 `
 [default]
-msys2_base = "D:/msys64"
-`
-""")
+base = "D:/msys64"
+`""")
         exit(-1)
-    p = config["default.msys2_base"]
+    p = config["default"]["base"]
+    p = remove_quote(p)
     return p, config_file, 0
 
 

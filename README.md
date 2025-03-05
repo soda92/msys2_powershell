@@ -13,7 +13,7 @@ In case of multiple MSYS2 detected, it will launch the first found in `PATH`, an
 You can also create a file `C:/Users/[your user name]/.config/msys2_wrapper.ini` to override the default, with the following contents:
 ```ini
 [default]
-msys2_base = "D:/msys64"
+base = "D:/msys64"
 ```
 
 ## Usage
