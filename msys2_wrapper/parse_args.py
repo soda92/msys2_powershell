@@ -72,6 +72,19 @@ def parse_args() -> LaunchArgs:
             largs.console = "conemu"
             shift_args()
             continue
+
+        if arg == "-search":
+            if len(args) == 1:
+                print("Package not specified for -search parameter.", file=sys.stderr)
+                exit(2)
+            package = args[1]
+            url = f"https://packages.msys2.org/search?t=pkg&q={package}"
+            import webbrowser
+
+            webbrowser.open(url)
+
+            shift_args(2)
+            continue
         break
 
     largs.msystem = msystem.upper()

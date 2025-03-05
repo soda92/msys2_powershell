@@ -23,6 +23,7 @@ Options:
                                      errorcode as this batch file 
                                      resulting errorcode
     -shell SHELL                     Set login shell
+    -search PACKAGE                  search pacakge using web browser
     -help | --help | -? | /?         Display this help and exit
 
 Any parameter that cannot be treated as valid option and all
