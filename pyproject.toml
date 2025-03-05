@@ -7,8 +7,10 @@ requires-python = ">=3.10"
 dependencies = []
 
 [project.scripts]
-msys2w = "msys2_wrapper.main:main"
+msys2c = "msys2_wrapper.main:main"
 
+[project.gui-scripts]
+msys2w = "msys2_wrapper.main:main"
 
 [build-system]
 requires = ["hatchling"]

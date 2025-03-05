@@ -62,6 +62,10 @@ def parse_args() -> LaunchArgs:
             shift_args()
             continue
 
+        if arg == "-conemu":
+            largs.console = "conemu"
+            shift_args()
+            continue
         break
 
     largs.msystem = msystem.upper()
